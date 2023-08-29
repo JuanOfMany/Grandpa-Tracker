@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+#app-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: dimgrey;
+}
+
+#chart-holder {
+  margin: 5vh;
+  height: 50vh;
+  width: 85vw;
+  background-color: aliceblue;
+}
