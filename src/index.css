@@ -12,9 +12,13 @@ body {
   background-color: dimgrey;
 }
 
-#chart-holder {
+#chart {
   margin: 5vh;
   height: 50vh;
   width: 85vw;
   background-color: aliceblue;
 }
+
+#huntr-react-container{
+  display:none;
+  }
