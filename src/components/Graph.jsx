@@ -12,6 +12,7 @@ import { Scatter, Line } from "react-chartjs-2";
 import { enUS } from "date-fns/locale";
 import format from "date-fns/format";
 import "chartjs-adapter-date-fns";
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 export default function Graph() {
   ChartJS.register(
@@ -20,7 +21,8 @@ export default function Graph() {
     PointElement,
     LineElement,
     Tooltip,
-    Legend
+    Legend,
+    annotationPlugin
   );
 
   let timestamps = [
@@ -69,19 +71,39 @@ export default function Graph() {
         max: 190,
       },
       x: {
-        type: 'time',
+        type: "time",
         time: {
-          parser: 'YYYY-MM-DD',
-          unit: 'month',
+          parser: "YYYY-MM-DD",
+          unit: "month",
           displayFormats: {
-             month: 'MM/yy'
+            month: "MMMM yy",
           },
-          tooltipFormat: 'dd/MM/yy'
+          tooltipFormat: "B dd/MM/yy",
         },
         grid: {
           display: false,
         },
       },
+    },
+    plugins: {
+      annotation: {
+        annotations: {
+          targetSystolic: {
+            type: 'line',
+            yMin: 120,
+            yMax: 120,
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 2,
+          },
+          targetDiastolic: {
+            type: 'line',
+            yMin: 80,
+            yMax: 80,
+            borderColor: 'rgb(255, 99, 132',
+            borderWidth: 2,
+          }
+        },
+      }
     },
   };
 
