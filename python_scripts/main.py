@@ -4,7 +4,7 @@ from segments import Segments
 import sys
 
 # load image
-img = cv2.imread("/Users/Juan/Desktop/Grandpa-Tracker/tutorial_env/omrontest.png");
+img = cv2.imread("/Users/Juan/Desktop/Grandpa-Tracker/python_scripts/omrontest.png");
 
 # print(img, type(img))
 
@@ -46,8 +46,8 @@ for a in range(erodeIter):
     thresh = cv2.erode(thresh, kernel);
 
 # show image
-cv2.imshow("thresh", thresh);
-cv2.imwrite("threshold.jpg", thresh);
+# cv2.imshow("thresh", thresh);
+# cv2.imwrite("threshold.jpg", thresh);
 
 # start processing
 contours, _ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE);

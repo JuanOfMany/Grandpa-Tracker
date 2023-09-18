@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 app.post('/bloodpressures', (req, res) => {
 
   const { spawn } = require('child_process');
-  const pyProg = spawn('python3', ['/Users/Juan/Desktop/Grandpa-Tracker/tutorial_env/main.py']);
+  const pyProg = spawn('python3', ['/Users/Juan/Desktop/Grandpa-Tracker/python_scripts/main.py']);
 
   pyProg.stdout.on('data', function(data) {
 
@@ -38,6 +38,19 @@ app.get('/bloodpressures', (req, res) => {
   res.status(200).send(body)
 })
 
+app.get('/test', (req, res) => {
+  console.log('testing python script')
+
+  const { spawn } = require('child_process');
+  const pyProg = spawn('python3', ['/Users/Juan/Desktop/Grandpa-Tracker/python_scripts/main.py']);
+
+  pyProg.stdout.on('data', function(data) {
+
+      console.log(data.toString());
+      res.write(data);
+      res.end('data');
+  });
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
