@@ -4,11 +4,14 @@ const app = express()
 const {spawn} = require('child_process');
 const port = 3000
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 app.post('/bloodpressures', (req, res) => {
+  console.log(req.body)
 
   const { spawn } = require('child_process');
   const pyProg = spawn('python3', ['/Users/Juan/Desktop/Grandpa-Tracker/python_scripts/main.py']);
