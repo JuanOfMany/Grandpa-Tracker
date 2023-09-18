@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Scatter, Line } from "react-chartjs-2";
+import { Scatter, Line, Bubble } from "react-chartjs-2";
 import { enUS } from "date-fns/locale";
 import format from "date-fns/format";
 import "chartjs-adapter-date-fns";
@@ -31,9 +31,15 @@ export default function Graph() {
   ].sort();
 
   let exampleBPData = {
-    systolic: [120, 140, 139, 100, 110, 170, 150, 160],
+    systolic: [120, 140, 139, 100, 110, 160, 150, 160],
     diastolic: [80, 100, 75, 69, 85, 72, 100, 65, 61],
   };
+
+  let averageSystolic = exampleBPData.systolic.reduce((average, current) => average + current, 0)/exampleBPData.systolic.length
+
+  let averageDiastolic = exampleBPData.diastolic.reduce((average, current) => average + current, 0)/exampleBPData.diastolic.length
+
+  console.log(averageSystolic + '/' + averageDiastolic)
 
   const data = {
     datasets: [
@@ -43,6 +49,8 @@ export default function Graph() {
           let obj = {
             x: timestamps[index],
             y: BP,
+            // r: Math.abs(BP - 120) * 0.5,
+            r: 10,
           };
           return obj;
         }),
@@ -54,6 +62,8 @@ export default function Graph() {
           let obj = {
             x: timestamps[index],
             y: BP,
+            // r: Math.abs(BP - 80) * 0.8
+            r: 10,
           };
           return obj;
         }),
@@ -90,6 +100,7 @@ export default function Graph() {
         annotations: {
           targetSystolic: {
             type: 'line',
+            borderDash: [6, 6],
             yMin: 120,
             yMax: 120,
             borderColor: 'rgb(255, 99, 132)',
@@ -97,6 +108,7 @@ export default function Graph() {
           },
           targetDiastolic: {
             type: 'line',
+            borderDash: [6, 6],
             yMin: 80,
             yMax: 80,
             borderColor: 'rgb(255, 99, 132',
@@ -107,5 +119,5 @@ export default function Graph() {
     },
   };
 
-  return <Scatter id="chart" options={options} data={data} />;
+  return <Bubble id="chart" options={options} data={data} />;
 }
