@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # python env folder
-tutorial_env
+tutorial_env/
