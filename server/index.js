@@ -17,7 +17,6 @@ app.post('/bloodpressures', (req, res) => {
   const pyProg = spawn('python3', ['/Users/Juan/Desktop/Grandpa-Tracker/python_scripts/main.py']);
 
   pyProg.stdout.on('data', function(data) {
-
       console.log(data.toString());
       res.write(data);
       res.end('data');

@@ -47,7 +47,9 @@ class Segments:
             sh = yh - yl;
             # check
             count = np.count_nonzero(number[yl:yh, xl:xh] == 255);
-            if count / (sh * sw) > 0.5: # 0.5 is a sensitivity measure
+            if (sh * sw  == 0):
+                print('bad image');
+            elif count / (sh * sw) > 0.5: # 0.5 is a sensitivity measure
                 self.flags.append(a);
 
     # returns the stored number (stored in self.flags)
